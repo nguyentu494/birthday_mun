@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Happy Birthday, Như Nguyệt</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,300;1,400;1,500&amp;family=Plus+Jakarta+Sans:wght@300;400;500&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap&amp;subset=vietnamese" rel="stylesheet">
+<style>
+html,body{margin:0;padding:0;background:#070A1A;height:100%;overflow:hidden;-webkit-font-smoothing:antialiased;-webkit-tap-highlight-color:transparent}
+*{box-sizing:border-box}
+::-webkit-scrollbar{width:0;height:0}
+a{color:#A89CFF;text-decoration:none}a:hover{color:#FFF4C7}
+@keyframes nnFlicker{0%,100%{transform:translateX(-50%) scale(1,1) rotate(-3deg)}50%{transform:translateX(-50%) scale(.88,1.12) rotate(3deg)}}
+@keyframes nnSmoke{0%{opacity:0;transform:translate(-50%,0) scale(.5)}15%{opacity:.6}100%{opacity:0;transform:translate(calc(-50% + var(--sx)),-60px) scale(2.2)}}
+@keyframes nnSpark{0%{opacity:0;transform:translate(0,0) scale(.3)}25%{opacity:1}100%{opacity:0;transform:translate(var(--dx),-80px) scale(1.15)}}
+@keyframes nnLean{0%,100%{transform:translateX(-50%) skewX(-20deg) scale(.8,1.02)}50%{transform:translateX(-50%) skewX(-32deg) scale(.62,.9)}}
+@keyframes nnRipple{0%{opacity:.7;transform:scale(.25)}100%{opacity:0;transform:scale(1.5)}}
+@keyframes nnPulse{0%,100%{opacity:.25;transform:scale(1)}50%{opacity:.7;transform:scale(1.08)}}
+</style>
+</helmet>
+<div style="position:fixed;inset:0;overflow:hidden;background:radial-gradient(120% 80% at 50% 0%, #151638 0%, #0D1230 45%, #070A1A 100%);font-family:'Plus Jakarta Sans',system-ui,sans-serif;color:#FFFFFF">
+  <div style="position:absolute;inset:0;background:radial-gradient(60% 40% at 20% 70%, rgba(139,124,255,0.14), transparent 70%), radial-gradient(50% 35% at 85% 25%, rgba(255,184,209,0.07), transparent 70%);pointer-events:none"></div>
+  <canvas ref="{{ canvasRef }}" style="position:absolute;inset:0;width:100%;height:100%;display:block"></canvas>
+  <div style="position:absolute;inset:0;pointer-events:none;background:radial-gradient(45% 40% at 50% 50%, rgba(255,226,160,0.16), rgba(255,226,160,0) 70%), radial-gradient(80% 60% at 50% 55%, rgba(168,156,255,0.16), rgba(168,156,255,0) 75%);opacity:{{ warmO }};transition:opacity 2200ms ease"></div>
+  <div style="position:absolute;inset:0;pointer-events:none;background:radial-gradient(90% 70% at 50% 40%, #FFF9EC, #EFE0BF);opacity:{{ creamO }};transition:opacity {{ creamDur }} ease"></div>
+
+  <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:24px;pointer-events:{{ introPE }}">
+    <div style="display:flex;align-items:center;gap:16px;font-family:'Cormorant Garamond',serif;font-weight:500;font-size:clamp(26px,7vw,36px);letter-spacing:0.18em;padding-left:0.18em;color:#FFF4C7;text-shadow:0 0 22px rgba(255,244,199,0.55);opacity:{{ introO }};transform:translateY({{ introY }});transition:opacity 1100ms cubic-bezier(.22,.61,.36,1) 0ms, transform 1100ms cubic-bezier(.22,.61,.36,1) 0ms"><span style="width:clamp(28px,8vw,56px);height:1px;background:linear-gradient(90deg,transparent,rgba(255,244,199,0.7))"></span><span>24 · 09</span><span style="width:clamp(28px,8vw,56px);height:1px;background:linear-gradient(270deg,transparent,rgba(255,244,199,0.7))"></span></div>
+    <h1 style="margin:18px 0 0;font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:400;font-size:clamp(52px,15vw,104px);line-height:0.95;letter-spacing:-0.01em;color:#FFFFFF;text-shadow:0 0 40px rgba(168,156,255,0.45);text-wrap:balance;opacity:{{ introO }};transform:translateY({{ introY }});transition:opacity 1200ms cubic-bezier(.22,.61,.36,1) 150ms, transform 1200ms cubic-bezier(.22,.61,.36,1) 150ms">Happy Birthday</h1>
+    <div style="margin-top:clamp(14px,3vh,24px);font-family:'Cormorant Garamond',serif;font-weight:500;font-size:clamp(40px,11vw,68px);line-height:1.1;letter-spacing:0.02em;color:#FFF4C7;text-shadow:0 0 28px rgba(255,244,199,0.45), 0 0 60px rgba(168,156,255,0.35);opacity:{{ introO }};transform:translateY({{ introY }});transition:opacity 1200ms cubic-bezier(.22,.61,.36,1) 320ms, transform 1200ms cubic-bezier(.22,.61,.36,1) 320ms">Như Nguyệt</div>
+    <div style="margin-top:clamp(26px,5vh,40px);font-size:13px;color:#FFF4C7;opacity:{{ introO }};transition:opacity 1200ms ease 420ms">✦</div>
+    <p style="margin:12px 0 0;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:20px;line-height:1.45;color:#DCDCF5;opacity:{{ introO }};transform:translateY({{ introY }});transition:opacity 1200ms cubic-bezier(.22,.61,.36,1) 480ms, transform 1200ms cubic-bezier(.22,.61,.36,1) 480ms">Một món quà nhỏ<br>dành cho bạn...</p>
+    <div style="margin-top:18px;opacity:{{ btnO }};transform:scale({{ btnScale }});transition:opacity 600ms ease 0ms, transform 300ms cubic-bezier(.3,.7,.4,1)">
+      <button ref="{{ btnRef }}" onClick="{{ open }}" onMouseEnter="{{ hovOn }}" onMouseLeave="{{ hovOff }}" style="position:relative;display:flex;flex-direction:column;align-items:center;gap:12px;padding:8px 24px 6px;background:none;border:0;cursor:pointer;color:inherit;font:inherit">
+        <span style="font-size:16px;line-height:1;color:#FFF4C7;opacity:0.75;transform:translateY({{ arrowY }});transition:transform 300ms ease">↓</span>
+        <span style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.25em;padding-left:0.25em;color:{{ ctaColor }};text-shadow:{{ ctaShadow }};transition:color 250ms ease, text-shadow 250ms ease">OPEN THE LETTER</span>
+        <span style="display:block;height:1px;width:{{ lineW }};background:linear-gradient(90deg, rgba(255,244,199,0), #FFF4C7, rgba(255,244,199,0));box-shadow:{{ lineGlow }};transition:width 320ms cubic-bezier(.22,.61,.36,1), box-shadow 320ms ease"></span>
+        {{ halo }}{{ ripple }}
+      </button>
+    </div>
+  </div>
+
+  <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;pointer-events:none">
+    <div style="position:relative;width:min(74vw,300px);aspect-ratio:3 / 2;perspective:900px;opacity:{{ envO }};transform:{{ envT }};transition:opacity 500ms ease, transform 600ms cubic-bezier(.22,.61,.36,1)">
+      <div style="position:absolute;inset:-35%;border-radius:50%;background:radial-gradient(closest-side, rgba(255,226,160,0.3), rgba(255,226,160,0));opacity:{{ envGlowO }};transition:opacity 700ms ease"></div>
+      <div style="position:absolute;inset:0;border-radius:8px;background:linear-gradient(180deg,#F1E6CC,#E8DABA);border:1px solid rgba(201,162,78,0.7);box-shadow:0 18px 50px rgba(3,4,14,0.5)"></div>
+      <div style="position:absolute;left:10%;right:10%;top:4%;height:50%;border-radius:50%;background:radial-gradient(closest-side, rgba(255,240,195,0.95), rgba(255,240,195,0));opacity:{{ innerO }};transition:opacity 500ms ease"></div>
+      <div style="position:absolute;left:8%;right:8%;top:8%;bottom:8%;border-radius:4px;background:#FFFBF1;border:1px solid rgba(201,162,78,0.45);box-shadow:0 -4px 22px rgba(255,226,160,0.4);transform:translateY({{ sheetY }});transition:transform 700ms cubic-bezier(.22,.61,.36,1);display:flex;flex-direction:column;align-items:center;padding-top:10%;gap:8px">
+        <span style="font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:0.4em;padding-left:0.4em;color:#9A7630">HAPPY BIRTHDAY</span>
+        <span style="width:36%;height:1px;background:rgba(201,162,78,0.5)"></span>
+      </div>
+      <div style="position:absolute;inset:0;border-radius:8px;overflow:hidden">
+        <div style="position:absolute;inset:0;background:linear-gradient(180deg,#F7EEDA,#EEE2C4);clip-path:polygon(0 0, 50% 52%, 100% 0, 100% 100%, 0 100%)"></div>
+        <svg viewBox="0 0 300 200" preserveAspectRatio="none" style="position:absolute;inset:0;width:100%;height:100%"><polyline points="0,0 150,104 300,0" fill="none" stroke="rgba(201,162,78,0.6)" stroke-width="1" vector-effect="non-scaling-stroke"></polyline></svg>
+      </div>
+      <div style="position:absolute;left:0;right:0;top:0;height:62%;transform-origin:50% 0%;transform:rotateX({{ flapR }});z-index:{{ flapZ }};transition:transform 600ms cubic-bezier(.45,0,.25,1)">
+        <div style="position:absolute;inset:0;background:linear-gradient(180deg,#E9DBBB,#F4EAD3);clip-path:polygon(0 0, 100% 0, 50% 100%)"></div>
+        <svg viewBox="0 0 300 100" preserveAspectRatio="none" style="position:absolute;inset:0;width:100%;height:100%"><polyline points="0,0 150,100 300,0" fill="none" stroke="rgba(201,162,78,0.7)" stroke-width="1" vector-effect="non-scaling-stroke"></polyline></svg>
+        <div style="position:absolute;left:50%;top:100%;width:36px;height:36px;margin:-24px 0 0 -18px;border-radius:50%;background:radial-gradient(circle at 35% 30%, #E9CB80, #B8913A);box-shadow:0 2px 8px rgba(120,80,20,0.35);display:flex;align-items:center;justify-content:center;color:#FFF7E0;font-size:14px;opacity:{{ sealO }};transition:opacity 250ms ease">✦</div>
+      </div>
+    </div>
+  </div>
+
+  <div ref="{{ layerRef }}" style="position:absolute;inset:0;overflow-y:{{ layerOY }};overflow-x:hidden;scrollbar-width:none;-webkit-overflow-scrolling:touch;pointer-events:{{ cardPE }};display:flex;flex-direction:column;align-items:center;padding:clamp(28px,6vh,64px) 16px 40px">
+    <div data-card="1" style="position:relative;margin:auto 0;width:100%;max-width:540px;opacity:{{ cardO }};transform:{{ cardT }};transition:opacity 800ms ease, transform 1000ms cubic-bezier(.22,.61,.36,1)">
+      <div style="position:relative;border-radius:18px;border:1px solid rgba(201,162,78,0.55);background:radial-gradient(rgba(140,105,40,0.05) 1px, transparent 1px) 0 0 / 12px 12px, linear-gradient(180deg,#FFFBF1,#F5ECD6);box-shadow:0 30px 80px rgba(3,4,14,0.55), 0 0 90px rgba(255,226,160,0.22);padding:clamp(26px,6vw,44px) clamp(22px,6vw,44px) 26px">
+        <span style="position:absolute;inset:7px;border:1px solid rgba(201,162,78,0.28);border-radius:13px;pointer-events:none"></span>
+        <span style="position:absolute;top:14px;left:16px;color:#C9A24E;font-size:12px;opacity:0.8">✦</span>
+        <span style="position:absolute;top:14px;right:16px;color:#A89CFF;font-size:12px;opacity:0.8">✧</span>
+        <span style="position:absolute;bottom:14px;left:16px;color:#A89CFF;font-size:12px;opacity:0.8">✧</span>
+        <span style="position:absolute;bottom:14px;right:16px;color:#C9A24E;font-size:12px;opacity:0.8">✦</span>
+
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:16px">
+          <div style="display:flex;flex-direction:column;gap:6px;padding-top:8px;font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:0.18em;color:#6E5FD8">
+            <span>POSTCARD Nº 22</span>
+            <span style="color:#6A6C8E">N 24.09° · E 20.04°</span>
+          </div>
+          <div onClick="{{ stampTap }}" style="position:relative;flex:none;width:68px;height:80px;margin-right:4px;cursor:pointer;transform:rotate({{ stampR }});transition:transform 400ms cubic-bezier(.34,1.4,.5,1)">
+            <div style="position:absolute;inset:0;border:1.5px dashed rgba(201,102,141,0.55);border-radius:6px;transform:rotate(6deg);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;background:rgba(201,102,141,0.05)">
+              <span style="font-size:20px;color:#C9668D;line-height:1">✈</span>
+              <span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.08em;color:#C9668D">24·09</span>
+              <span style="font-family:'JetBrains Mono',monospace;font-size:8.5px;letter-spacing:0.12em;color:#C9668D">2026</span>
+            </div>
+            <div style="position:absolute;left:-30px;top:34px;width:54px;height:54px;border-radius:50%;border:1px solid rgba(176,138,54,0.5);display:flex;align-items:center;justify-content:center;transform:rotate(-14deg);font-family:'JetBrains Mono',monospace;font-size:7.5px;letter-spacing:0.14em;color:#9A7630;text-align:center;line-height:1.4">AIR<br>MAIL</div>
+          </div>
+        </div>
+
+        <div style="margin-top:18px;text-align:center">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.5em;padding-left:0.5em;color:#9A7630">HAPPY BIRTHDAY</div>
+          <div style="margin-top:10px;font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:400;font-size:clamp(40px,11vw,56px);line-height:1;color:#1B1D45">Như Nguyệt</div>
+        </div>
+
+        <div style="display:flex;align-items:center;gap:12px;margin:26px 0 24px">
+          <div style="flex:1;height:1px;background:linear-gradient(90deg, transparent, rgba(168,156,255,0.5))"></div>
+          <svg width="84" height="22" viewBox="0 0 84 22" style="flex:none">
+            <polyline points="4,15 22,6 40,12 58,4 80,14" fill="none" stroke="rgba(168,156,255,0.6)" stroke-width="0.8"></polyline>
+            <circle cx="4" cy="15" r="1.6" fill="#8B7CFF"></circle>
+            <circle cx="22" cy="6" r="2" fill="#C9A24E"></circle>
+            <circle cx="40" cy="12" r="1.4" fill="#8B7CFF"></circle>
+            <circle cx="58" cy="4" r="2.2" fill="#C9A24E"></circle>
+            <circle cx="80" cy="14" r="1.6" fill="#8B7CFF"></circle>
+          </svg>
+          <div style="flex:1;height:1px;background:linear-gradient(270deg, transparent, rgba(168,156,255,0.5))"></div>
+        </div>
+
+        <div style="display:flex;flex-direction:column;font-size:16px;line-height:1.75;color:#34365C;text-wrap:pretty">
+          <div style="display:grid;grid-template-rows:{{ r.p0 }};transition:grid-template-rows 550ms cubic-bezier(.22,.61,.36,1)"><div style="min-height:0;overflow:hidden;margin:0 -6px;padding:0 6px"><p data-p="0" style="margin:0;padding-bottom:16px;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:23px;line-height:1.3;color:#1B1D45;opacity:{{ o.p0 }};transform:translateY({{ y.p0 }});transition:opacity 300ms ease"><span style="opacity:{{ co.k0 }};filter:blur({{ cb.k0 }});transition:opacity 700ms ease, filter 700ms ease">Happy Birthday Lê Nguyệt</span></p></div></div>
+          <div style="display:grid;grid-template-rows:{{ r.p1 }};transition:grid-template-rows 550ms cubic-bezier(.22,.61,.36,1)"><div style="min-height:0;overflow:hidden;margin:0 -6px;padding:0 6px"><p data-p="1" style="margin:0;padding-bottom:16px;opacity:{{ o.p1 }};transform:translateY({{ y.p1 }});transition:opacity 300ms ease"><span style="opacity:{{ co.k1 }};filter:blur({{ cb.k1 }});transition:opacity 700ms ease, filter 700ms ease">Chúc em tuổi mới sẽ có một công việc mới thật tốt,</span> <span style="opacity:{{ co.k2 }};filter:blur({{ cb.k2 }});transition:opacity 700ms ease, filter 700ms ease">thật nhiều niềm vui</span> <span style="opacity:{{ co.k3 }};filter:blur({{ cb.k3 }});transition:opacity 700ms ease, filter 700ms ease">và thật nhiều điều khiến em cảm thấy tự hào.</span> <span style="opacity:{{ co.k4 }};filter:blur({{ cb.k4 }});transition:opacity 700ms ease, filter 700ms ease">Mong rằng trong những tương lai sắp tới</span> <span style="opacity:{{ co.k5 }};filter:blur({{ cb.k5 }});transition:opacity 700ms ease, filter 700ms ease">công việc em sẽ nhẹ nhàng hơn,</span> <span style="opacity:{{ co.k6 }};filter:blur({{ cb.k6 }});transition:opacity 700ms ease, filter 700ms ease">có nhiều thời gian hơn để làm được nhiều điều mình muốn,</span> <span style="opacity:{{ co.k7 }};filter:blur({{ cb.k7 }});transition:opacity 700ms ease, filter 700ms ease">đi những nơi mình thích.</span></p></div></div>
+          <div style="display:grid;grid-template-rows:{{ r.p2 }};transition:grid-template-rows 550ms cubic-bezier(.22,.61,.36,1)"><div style="min-height:0;overflow:hidden;margin:0 -6px;padding:0 6px"><p data-p="2" style="margin:0;padding-bottom:16px;opacity:{{ o.p2 }};transform:translateY({{ y.p2 }});transition:opacity 300ms ease"><span style="opacity:{{ co.k8 }};filter:blur({{ cb.k8 }});transition:opacity 700ms ease, filter 700ms ease">Và nếu có một điều anh mong nhất cho Nguyệt</span> <span style="opacity:{{ co.k9 }};filter:blur({{ cb.k9 }});transition:opacity 700ms ease, filter 700ms ease">trong tuổi 22...</span></p></div></div>
+          <div style="display:grid;grid-template-rows:{{ r.p3 }};transition:grid-template-rows 550ms cubic-bezier(.22,.61,.36,1)"><div style="min-height:0;overflow:hidden;margin:0 -6px;padding:0 6px"><p data-p="3" style="margin:0;padding-bottom:16px;opacity:{{ o.p3 }};transform:translateY({{ y.p3 }});transition:opacity 300ms ease"><span style="opacity:{{ co.k10 }};filter:blur({{ cb.k10 }});transition:opacity 700ms ease, filter 700ms ease">thì đó là dù đi đâu, làm gì,</span> <span style="opacity:{{ co.k11 }};filter:blur({{ cb.k11 }});transition:opacity 700ms ease, filter 700ms ease">em vẫn luôn có đủ năng lượng để làm những điều mình thích nhé.</span> <span style="opacity:{{ co.k12 }};filter:blur({{ cb.k12 }});transition:opacity 700ms ease, filter 700ms ease">Nhưng mà đôi lúc mệt mỏi quá</span> <span style="opacity:{{ co.k13 }};filter:blur({{ cb.k13 }});transition:opacity 700ms ease, filter 700ms ease">thì cũng nhớ nghỉ ngơi nha em :D</span></p></div></div>
+          <div style="display:grid;grid-template-rows:{{ r.p4 }};transition:grid-template-rows 550ms cubic-bezier(.22,.61,.36,1)"><div style="min-height:0;overflow:hidden;margin:0 -6px;padding:0 6px"><p data-p="4" style="margin:0;padding-bottom:16px;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:23px;line-height:1.3;color:#1B1D45;opacity:{{ o.p4 }};transform:translateY({{ y.p4 }});transition:opacity 300ms ease"><span style="opacity:{{ co.k14 }};filter:blur({{ cb.k14 }});transition:opacity 700ms ease, filter 700ms ease">Happy Birthday, Như Nguyệt. 🌙</span></p></div></div>
+          <div style="display:grid;grid-template-rows:{{ r.p5 }};transition:grid-template-rows 550ms cubic-bezier(.22,.61,.36,1)"><div style="min-height:0;overflow:hidden;margin:0 -6px;padding:0 6px"><p data-p="5" style="margin:0;padding-bottom:0;opacity:{{ o.p5 }};transform:translateY({{ y.p5 }});transition:opacity 300ms ease"><span style="opacity:{{ co.k15 }};filter:blur({{ cb.k15 }});transition:opacity 700ms ease, filter 700ms ease">Chúc cho hành trình tuổi 22 của em thật đẹp nhé.</span> <span style="display:inline-block;color:#C9A24E;opacity:{{ finO }};transform:scale({{ finS }});transition:opacity 500ms ease, transform 600ms cubic-bezier(.22,.61,.36,1)">✦</span></p></div></div>
+        </div>
+
+        <div style="display:grid;grid-template-rows:{{ cakeRows }};transition:grid-template-rows 900ms cubic-bezier(.22,.61,.36,1)"><div style="min-height:0;overflow:{{ cakeOv }}">
+        <div data-p="cake" style="padding-top:44px;display:flex;flex-direction:column;align-items:center;gap:18px;opacity:{{ cakeO }};transform:translateY({{ cakeY }}) scale({{ cakeS }});transition:opacity 1000ms ease 200ms, transform 1200ms cubic-bezier(.22,.61,.36,1) 200ms">
+          <div ref="{{ cakeRef }}" style="position:relative;width:180px;height:150px">
+            {{ cakeGlow }}
+            <div style="position:absolute;left:50%;bottom:0;width:190px;height:22px;transform:translateX(-50%);border-radius:50%;background:radial-gradient(closest-side, rgba(176,138,54,0.18), rgba(176,138,54,0))"></div>
+            <div style="position:absolute;left:14px;bottom:6px;width:152px;height:14px;border-radius:50%;background:linear-gradient(180deg,#E9E6FF,#B9B0F0);box-shadow:0 4px 16px rgba(139,124,255,0.35)"></div>
+            <div style="position:absolute;left:30px;bottom:12px;width:120px;height:66px;border-radius:0 0 60px 60px / 0 0 12px 12px;background:linear-gradient(90deg,#EFE3C4 0%,#FFF9E6 38%,#FFF4D8 62%,#E6D7B2 100%);box-shadow:inset 0 0 0 1px rgba(176,138,54,0.3)"></div>
+            <div style="position:absolute;left:30px;bottom:34px;width:120px;height:2px;background:rgba(214,186,120,0.7)"></div>
+            <div style="position:absolute;left:30px;bottom:66px;width:120px;height:24px;border-radius:50%;background:linear-gradient(180deg,#C9C0FF,#A89CFF)"></div>
+            <div style="position:absolute;left:30px;bottom:56px;width:120px;height:22px;display:flex;justify-content:space-between;padding:0 2px;pointer-events:none">
+              <span style="width:14px;height:20px;border-radius:0 0 8px 8px;background:#A89CFF"></span>
+              <span style="width:10px;height:13px;border-radius:0 0 6px 6px;background:#A89CFF"></span>
+              <span style="width:13px;height:22px;border-radius:0 0 8px 8px;background:#A89CFF"></span>
+              <span style="width:9px;height:11px;border-radius:0 0 6px 6px;background:#A89CFF"></span>
+              <span style="width:12px;height:18px;border-radius:0 0 7px 7px;background:#A89CFF"></span>
+              <span style="width:10px;height:12px;border-radius:0 0 6px 6px;background:#A89CFF"></span>
+              <span style="width:14px;height:19px;border-radius:0 0 8px 8px;background:#A89CFF"></span>
+            </div>
+            <div style="position:absolute;left:34px;bottom:72px;width:112px;height:16px;border-radius:50%;background:radial-gradient(ellipse at 50% 40%, #D9D2FF, #B3A8FF)"></div>
+            <div style="position:absolute;left:78px;bottom:80px;width:5px;height:34px;border-radius:2px;background:linear-gradient(90deg,#E8D9A8,#FFF4C7,#D9C58A)"></div>
+            <div style="position:absolute;left:97px;bottom:80px;width:5px;height:34px;border-radius:2px;background:linear-gradient(90deg,#E8D9A8,#FFF4C7,#D9C58A)"></div>
+            <div style="position:absolute;left:80.5px;bottom:114px;width:0;height:0">{{ flame1 }}</div>
+            <div style="position:absolute;left:99.5px;bottom:114px;width:0;height:0">{{ flame2 }}</div>
+            {{ sparks }}
+          </div>
+          <sc-if value="{{ notBlown }}" hint-placeholder-val="{{ true }}">
+            <div style="display:flex;flex-direction:column;align-items:center;gap:10px">
+              <button onPointerDown="{{ holdStart }}" onPointerUp="{{ holdEnd }}" onPointerLeave="{{ holdEnd }}" onPointerCancel="{{ holdEnd }}" onClick="{{ blowKey }}" onContextMenu="{{ noMenu }}" style="position:relative;overflow:hidden;min-height:46px;padding:0 26px;border-radius:999px;border:1px solid rgba(176,138,54,0.55);background:rgba(139,124,255,0.08);color:#1B1D45;font-family:'Plus Jakarta Sans',sans-serif;font-size:14px;letter-spacing:0.04em;cursor:pointer;box-shadow:0 4px 16px rgba(139,124,255,0.15);user-select:none;-webkit-user-select:none;-webkit-touch-callout:none;touch-action:none;transition:border-color 250ms ease" style-hover="border-color:rgba(176,138,54,0.9)">
+                <span style="position:absolute;left:0;top:0;bottom:0;width:{{ holdW }};background:linear-gradient(90deg,rgba(201,162,78,0.15),rgba(201,162,78,0.35));transition:width {{ holdDur }} linear"></span>
+                <span style="position:relative">Ước một điều rồi thổi nến</span>
+              </button>
+              <span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.2em;color:#7A6A45">{{ holdHint }}</span>
+            </div>
+          </sc-if>
+        </div>
+        </div></div>
+
+        <div style="display:grid;grid-template-rows:{{ r.p8 }};transition:grid-template-rows 900ms cubic-bezier(.22,.61,.36,1)"><div style="min-height:0;overflow:hidden">
+        <div data-p="8" style="padding-top:34px;display:flex;flex-direction:column;align-items:center;gap:12px;text-align:center;opacity:{{ o.p8 }};transform:translateY({{ y.p8 }});transition:opacity 700ms ease, transform 700ms cubic-bezier(.22,.61,.36,1)">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.32em;padding-left:0.32em;color:#9A7630">LEVEL 22 UNLOCKED ✦</div>
+          <p style="margin:0;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:21px;line-height:1.35;color:#1B1D45">May your next journey<br>be filled with beautiful memories.</p>
+        </div>
+        </div></div>
+
+        <div style="display:grid;grid-template-rows:{{ planeRows }};transition:grid-template-rows 700ms ease"><div style="min-height:0;overflow:hidden">
+        <div style="margin-top:28px;position:relative;height:16px;opacity:{{ planeO }};transition:opacity 900ms ease">
+          <div style="position:absolute;left:0;right:0;top:8px;border-top:1px dashed rgba(139,124,255,0.35)"></div>
+          <span style="position:absolute;top:0;left:{{ planeL }};font-size:13px;line-height:16px;color:#6E5FD8;background:#F7EFDC;padding:0 4px;transition:left 10s cubic-bezier(.45,0,.55,1)">✈</span>
+        </div>
+        </div></div>
+      </div>
+    </div>
+    <button onClick="{{ replay }}" onMouseEnter="{{ rOn }}" onMouseLeave="{{ rOff }}" style="flex:none;margin-top:26px;display:flex;flex-direction:column;align-items:center;gap:8px;padding:8px 20px;background:none;border:0;cursor:pointer;font:inherit;opacity:{{ o.p9 }};transform:translateY({{ y.p9 }});transition:opacity 900ms ease, transform 900ms ease;pointer-events:{{ replayPE }}">
+      <span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.25em;padding-left:0.25em;color:{{ rColor }};transition:color 250ms ease">REPLAY</span>
+      <span style="display:block;height:1px;width:{{ rLineW }};background:linear-gradient(90deg, rgba(255,244,199,0), #FFF4C7, rgba(255,244,199,0));transition:width 300ms cubic-bezier(.22,.61,.36,1)"></span>
+      <span style="font-size:10px;line-height:1;color:#FFF4C7;opacity:{{ rStarO }};transform:scale({{ rStarS }});transition:opacity 250ms ease, transform 300ms ease">✦</span>
+    </button>
+  </div>
+  <canvas ref="{{ trailRef }}" style="position:absolute;inset:0;width:100%;height:100%;display:block;pointer-events:none;z-index:5"></canvas>
+  <div style="position:absolute;left:50%;top:18px;z-index:6;pointer-events:none;max-width:90vw;padding:10px 18px;border-radius:999px;background:rgba(13,18,48,0.8);border:1px solid rgba(255,244,199,0.35);box-shadow:0 0 30px rgba(139,124,255,0.3);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);color:#FFF4C7;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.14em;line-height:1.5;text-align:center;opacity:{{ toastO }};transform:translate(-50%, {{ toastY }});transition:opacity 400ms ease, transform 500ms cubic-bezier(.22,.61,.36,1)">{{ toastText }}</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;revealSpeed&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:1,&quot;min&quot;:0.5,&quot;max&quot;:2,&quot;step&quot;:0.1,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Animation&quot;},&quot;starDensity&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:1,&quot;min&quot;:0.3,&quot;max&quot;:2,&quot;step&quot;:0.1,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Sky&quot;},&quot;constellations&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Sky&quot;}}">
+class Component extends DCLogic {
+  state = { loaded: false, phase: 'intro', stage: 0, revealed: 0, cake: false, blown: false, hov: false, rhov: false, pressed: false, pressN: 0, finStar: false, planeGo: false, chunks: 0, lit: false, holding: false, holdFail: false, cakeFull: false, spark: false, dark: false };
+  canvasRef = React.createRef();
+  layerRef = React.createRef();
+  btnRef = React.createRef();
+  cakeRef = React.createRef();
+  trailRef = React.createRef();
+  trail = [];
+  keybuf = '';
+  moonTaps = 0;
+  timers = [];
+  lens = [24, 290, 60, 150, 30, 50];
+  chunkLens = [24,50,19,44,39,30,56,24,43,16,28,62,28,32,30,48];
+  chunkPara = [0,1,1,1,1,1,1,1,2,2,3,3,3,3,4,5];
+
+  T(ms, fn) { this.timers.push(setTimeout(fn, ms)); }
+  clearTimers() { this.timers.forEach(clearTimeout); this.timers = []; }
+
+  componentDidMount() {
+    this.fx = { bright: 1, target: 1, burst: [], orb: null, ring: null, trail: [] };
+    this.reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    setTimeout(() => this.setState({ loaded: true }), 80);
+    this.initSky();
+    window.addEventListener('pointermove', this.onPMove, { passive: true });
+    window.addEventListener('pointerdown', this.onPDown, { passive: true });
+    window.addEventListener('keydown', this.onKey);
+  }
+  componentWillUnmount() {
+    this.clearTimers();
+    cancelAnimationFrame(this.raf);
+    window.removeEventListener('resize', this.onResize);
+    window.removeEventListener('pointermove', this.onPMove);
+    window.removeEventListener('pointerdown', this.onPDown);
+    window.removeEventListener('keydown', this.onKey);
+    clearTimeout(this.toastT);
+  }
+
+  initSky() {
+    const c = this.canvasRef.current;
+    if (!c) return;
+    const ctx = c.getContext('2d');
+    const tc = this.trailRef.current, tctx = tc && tc.getContext('2d');
+    this.moonImg = new Image(); this.moonImg.src = 'assets/moon.png';
+    const R = Math.random;
+    const seed = () => {
+      const W = this.W, H = this.H;
+      const density = this.props.starDensity ?? 1;
+      const n = Math.round(Math.min(480, (W * H) / 2400) * density);
+      this.stars = Array.from({ length: n }, () => ({
+        x: R() * W, y: R() * H, r: Math.pow(R(), 3) * 1.5 + 0.25,
+        a: 0.3 + R() * 0.7, tw: R() * 6.28, sp: 0.4 + R() * 1.6, warm: R() < 0.14
+      }));
+      this.dust = Array.from({ length: Math.round(Math.min(60, W / 14)) }, () => ({
+        x: R() * W, y: R() * H, vx: (R() - 0.5) * 0.08, vy: -(0.04 + R() * 0.16),
+        r: 0.6 + R() * 1.3, a: 0.15 + R() * 0.35, ph: R() * 6.28, gold: R() < 0.45
+      }));
+      this.orbs = [
+        { x: 0.2, y: 0.75, rad: 0.45, c: '139,124,255', ph: 0 },
+        { x: 0.85, y: 0.2, rad: 0.35, c: '255,184,209', ph: 2 },
+        { x: 0.55, y: 0.45, rad: 0.3, c: '168,156,255', ph: 4 }
+      ];
+      this.cons = null;
+      this.nextCons = performance.now() + 1200;
+      this.shoots = [];
+      this.nextShoot = performance.now() + 2500 + R() * 2500;
+    };
+    this.onResize = () => {
+      const d = Math.min(window.devicePixelRatio || 1, 2);
+      this.W = window.innerWidth; this.H = window.innerHeight;
+      c.width = this.W * d; c.height = this.H * d;
+      ctx.setTransform(d, 0, 0, d, 0, 0);
+      if (tc) { tc.width = this.W * d; tc.height = this.H * d; tctx.setTransform(d, 0, 0, d, 0, 0); }
+      seed();
+    };
+    window.addEventListener('resize', this.onResize);
+    this.onResize();
+
+    const pickCons = (now) => {
+      const W = this.W, H = this.H;
+      const cand = this.stars.filter(s => s.r > 0.7 && s.x > W * 0.06 && s.x < W * 0.94 && s.y > H * 0.05 && s.y < H * 0.95);
+      if (cand.length < 6) return null;
+      let cur = cand[Math.floor(R() * cand.length)];
+      const pts = [cur], used = new Set([cur]);
+      const k = 4 + Math.floor(R() * 3);
+      const maxD = Math.max(90, Math.min(W, H) * 0.22);
+      for (let i = 1; i < k; i++) {
+        let best = null, bd = Infinity;
+        for (const s of cand) {
+          if (used.has(s)) continue;
+          const d = Math.hypot(s.x - cur.x, s.y - cur.y);
+          if (d > 28 && d < maxD && d < bd) { bd = d; best = s; }
+        }
+        if (!best) break;
+        pts.push(best); used.add(best); cur = best;
+      }
+      return pts.length >= 3 ? { pts, t0: now } : null;
+    };
+
+    const frame = (now) => {
+      const W = this.W, H = this.H, fx = this.fx, t = now * 0.001;
+      ctx.clearRect(0, 0, W, H);
+      fx.bright += (fx.target - fx.bright) * 0.035;
+      const B = fx.bright;
+
+      ctx.globalCompositeOperation = 'lighter';
+      for (const o of this.orbs) {
+        const x = (o.x + Math.sin(t * 0.05 + o.ph) * 0.06) * W;
+        const y = (o.y + Math.cos(t * 0.04 + o.ph) * 0.05) * H;
+        const rr = o.rad * Math.max(W, H);
+        const g = ctx.createRadialGradient(x, y, 0, x, y, rr);
+        g.addColorStop(0, `rgba(${o.c},${0.07 * (0.8 + 0.2 * B)})`);
+        g.addColorStop(1, `rgba(${o.c},0)`);
+        ctx.fillStyle = g;
+        ctx.fillRect(x - rr, y - rr, rr * 2, rr * 2);
+      }
+
+      for (const s of this.stars) {
+        const tw = 0.55 + 0.45 * Math.sin(t * s.sp + s.tw);
+        let sx = s.x, sy = s.y, am = 1;
+        if (s.g) {
+          const p = Math.min(1, Math.max(0, (now - s.g.t0) / s.g.dur));
+          const e = p < 0.5 ? 4 * p * p * p : 1 - Math.pow(-2 * p + 2, 3) / 2;
+          sx = s.x + (W / 2 - s.x) * e; sy = s.y + (H / 2 - s.y) * e; am = 1 + e * 1.2;
+          if (p >= 1) { s.g = null; s.back = now + 1800; am = 0; }
+        } else if (s.back) {
+          const q = (now - s.back) / 1500; am = q < 0 ? 0 : Math.min(1, q);
+          if (q >= 1) s.back = null;
+        }
+        const a = Math.min(1, s.a * tw * B * am);
+        const col = s.warm ? '255,244,199' : '220,220,245';
+        const r = s.r * (0.85 + 0.25 * (B - 1));
+        if (r > 1.05 || am > 1) {
+          ctx.fillStyle = `rgba(${col},${a * 0.12})`;
+          ctx.beginPath(); ctx.arc(sx, sy, r * 4, 0, 6.283); ctx.fill();
+        }
+        ctx.fillStyle = `rgba(${col},${a})`;
+        ctx.beginPath(); ctx.arc(sx, sy, r, 0, 6.283); ctx.fill();
+      }
+
+      {
+        const land = W > H;
+        const mr = Math.max(26, Math.min(66, Math.min(W, H) * (land ? 0.07 : 0.085)));
+        const mx = land ? W * 0.88 : W * 0.8;
+        const my = land ? Math.max(mr * 1.6, H * 0.1) : Math.max(mr * 2.2, H * 0.12);
+        ctx.globalCompositeOperation = 'lighter';
+        const hg = ctx.createRadialGradient(mx, my, mr * 0.8, mx, my, mr * 7);
+        hg.addColorStop(0, `rgba(255,244,199,${0.16 * Math.min(1.5, B)})`);
+        hg.addColorStop(0.35, `rgba(168,156,255,${0.06 * B})`);
+        hg.addColorStop(1, 'rgba(168,156,255,0)');
+        ctx.fillStyle = hg; ctx.beginPath(); ctx.arc(mx, my, mr * 7, 0, 6.283); ctx.fill();
+        ctx.globalCompositeOperation = 'source-over';
+        const mp = fx.moonPulse ? Math.max(0, 1 - (now - fx.moonPulse) / 1800) : 0;
+        const breath = 0.85 + 0.15 * Math.sin(t * 0.6) + mp * 1.6;
+        this.moonPos = { x: mx, y: my, r: mr };
+        ctx.globalCompositeOperation = 'lighter';
+        const ig = ctx.createRadialGradient(mx, my, mr * 0.9, mx, my, mr * 2.2);
+        ig.addColorStop(0, `rgba(255,244,199,${0.28 * breath})`); ig.addColorStop(1, 'rgba(255,244,199,0)');
+        ctx.fillStyle = ig; ctx.beginPath(); ctx.arc(mx, my, mr * 2.2, 0, 6.283); ctx.fill();
+        ctx.globalCompositeOperation = 'source-over';
+        if (this.moonImg && this.moonImg.complete && this.moonImg.naturalWidth) {
+          const D = mr / 0.283, fy = Math.sin(t * 0.5) * mr * 0.04;
+          ctx.save();
+          ctx.translate(mx, my + fy); ctx.rotate(Math.sin(t * 0.15) * 0.03);
+          ctx.globalAlpha = Math.min(1, 0.92 + 0.08 * breath);
+          ctx.drawImage(this.moonImg, -D * 0.493, -D * 0.496, D, D);
+          ctx.restore();
+        }
+        ctx.globalCompositeOperation = 'lighter';
+      }
+
+      if ((this.props.constellations ?? true)) {
+        if (!this.cons && now > this.nextCons) this.cons = pickCons(now);
+        if (this.cons) {
+          const el = (now - this.cons.t0) / 1000;
+          const draw = 3, hold = this.cons.hold || 4.5, fade = 2.5;
+          const p = Math.min(1, el / draw);
+          const alpha = el < draw + hold ? 1 : Math.max(0, 1 - (el - draw - hold) / fade);
+          const pts = this.cons.pts, segs = pts.length - 1, prog = p * segs;
+          ctx.strokeStyle = `rgba(168,156,255,${0.45 * alpha * Math.min(1.4, B)})`;
+          ctx.lineWidth = 0.7;
+          ctx.beginPath(); ctx.moveTo(pts[0].x, pts[0].y);
+          for (let i = 0; i < segs; i++) {
+            const f = Math.min(1, Math.max(0, prog - i));
+            if (f <= 0) break;
+            const a1 = pts[i], a2 = pts[i + 1];
+            ctx.lineTo(a1.x + (a2.x - a1.x) * f, a1.y + (a2.y - a1.y) * f);
+          }
+          ctx.stroke();
+          pts.forEach((s, i) => {
+            if (i > prog + 0.01) return;
+            ctx.fillStyle = `rgba(255,244,199,${0.18 * alpha})`;
+            ctx.beginPath(); ctx.arc(s.x, s.y, 5, 0, 6.283); ctx.fill();
+            ctx.fillStyle = `rgba(255,244,199,${0.9 * alpha})`;
+            ctx.beginPath(); ctx.arc(s.x, s.y, 1.5, 0, 6.283); ctx.fill();
+          });
+          if (el > draw + hold + fade) { this.cons = null; this.nextCons = now + 2000 + R() * 3000; }
+        }
+      }
+
+      for (const d of this.dust) {
+        d.x += d.vx; d.y += d.vy;
+        if (d.y < -5) { d.y = H + 5; d.x = R() * W; }
+        if (d.x < -5) d.x = W + 5; if (d.x > W + 5) d.x = -5;
+        const a = d.a * (0.6 + 0.4 * Math.sin(t * 0.8 + d.ph));
+        ctx.fillStyle = `rgba(${this.state.stage >= 4 && d.gold ? '255,226,160' : '168,156,255'},${a})`;
+        ctx.beginPath(); ctx.arc(d.x, d.y, d.r, 0, 6.283); ctx.fill();
+      }
+
+      const spawn = (shower) => {
+        const dir = shower ? -1 : (R() < 0.5 ? 1 : -1);
+        const ang = shower ? 0.5 + R() * 0.14 : 0.32 + R() * 0.25;
+        const sp = Math.max(W, H) * (shower ? 0.75 + R() * 0.5 : 0.55 + R() * 0.3);
+        const x = shower ? W * (0.25 + R() * 0.95) : (dir > 0 ? R() * W * 0.6 : W * 0.4 + R() * W * 0.6);
+        return { x, y: shower ? -30 + R() * H * 0.35 : R() * H * 0.35, vx: Math.cos(ang) * sp * dir, vy: Math.sin(ang) * sp,
+          t0: now, dur: shower ? 0.8 + R() * 0.7 : 1.1 + R() * 0.5, len: shower ? 0.1 + R() * 0.1 : 0.12, w: shower ? 0.8 + R() * 1.4 : 1.3,
+          c: shower && R() < 0.35 ? '200,190,255' : '255,244,199' };
+      };
+      if (fx.bigShoot) {
+        fx.bigShoot = false;
+        const sp = Math.hypot(W, H) * 0.85;
+        this.shoots.push({ x: W * 0.98, y: H * 0.04, vx: -Math.cos(0.62) * sp, vy: Math.sin(0.62) * sp, t0: now, dur: 1.35, len: 0.2, w: 2.2, c: '255,236,180' });
+      }
+      if (now > this.nextShoot) { this.shoots.push(spawn(false)); this.nextShoot = now + 3500 + R() * 4500; }
+      if (fx.shower && now < fx.shower.until && now > fx.shower.next) {
+        this.shoots.push(spawn(true)); if (R() < 0.45) this.shoots.push(spawn(true));
+        fx.shower.next = now + 70 + R() * 150;
+      }
+      this.shoots = this.shoots.filter(s => {
+        const el = (now - s.t0) / 1000, p = el / s.dur;
+        if (p >= 1) return false;
+        const hx = s.x + s.vx * el, hy = s.y + s.vy * el;
+        const tx = hx - s.vx * s.len, ty = hy - s.vy * s.len;
+        const a = Math.sin(p * Math.PI);
+        const g = ctx.createLinearGradient(hx, hy, tx, ty);
+        g.addColorStop(0, `rgba(${s.c},${0.95 * a})`);
+        g.addColorStop(1, `rgba(${s.c},0)`);
+        ctx.strokeStyle = g; ctx.lineWidth = s.w; ctx.lineCap = 'round';
+        ctx.beginPath(); ctx.moveTo(hx, hy); ctx.lineTo(tx, ty); ctx.stroke();
+        ctx.fillStyle = `rgba(255,255,255,${0.8 * a})`;
+        ctx.beginPath(); ctx.arc(hx, hy, s.w * 0.9, 0, 6.283); ctx.fill();
+        return true;
+      });
+
+      if (fx.orb) {
+        const o = fx.orb, p = Math.min(1, (now - o.t0) / o.dur);
+        const e = p < 0.5 ? 4 * p * p * p : 1 - Math.pow(-2 * p + 2, 3) / 2;
+        const lift = Math.sin(p * Math.PI) * -40;
+        const x = o.x0 + (o.x1 - o.x0) * e, y = o.y0 + (o.y1 - o.y0) * e + lift;
+        fx.trail.push({ x, y }); if (fx.trail.length > 18) fx.trail.shift();
+        fx.trail.forEach((q, i) => {
+          const a = (i / fx.trail.length) * 0.35;
+          ctx.fillStyle = `rgba(255,244,199,${a})`;
+          ctx.beginPath(); ctx.arc(q.x, q.y, 1 + i * 0.12, 0, 6.283); ctx.fill();
+        });
+        const g = ctx.createRadialGradient(x, y, 0, x, y, 26);
+        g.addColorStop(0, 'rgba(255,255,255,0.95)');
+        g.addColorStop(0.2, 'rgba(255,244,199,0.7)');
+        g.addColorStop(1, 'rgba(168,156,255,0)');
+        ctx.fillStyle = g; ctx.beginPath(); ctx.arc(x, y, 26, 0, 6.283); ctx.fill();
+        if (p >= 1) { fx.orb = null; fx.trail = []; this.burst(o.x1, o.y1, now); }
+      }
+
+      if (fx.light) {
+        const el = now - fx.light.t0;
+        if (el > 1300) fx.light = null;
+        else {
+          const cx = W / 2, cy = H / 2;
+          const grow = 1 - Math.pow(1 - Math.min(1, el / 380), 3);
+          const fade = el < 600 ? 1 : Math.max(0, 1 - (el - 600) / 700);
+          const glow = 12 + grow * 52;
+          const g = ctx.createRadialGradient(cx, cy, 0, cx, cy, glow);
+          g.addColorStop(0, `rgba(255,251,235,${0.95 * fade})`);
+          g.addColorStop(0.12, `rgba(255,236,180,${0.7 * fade})`);
+          g.addColorStop(0.45, `rgba(255,226,160,${0.16 * fade})`);
+          g.addColorStop(1, 'rgba(255,226,160,0)');
+          ctx.fillStyle = g; ctx.beginPath(); ctx.arc(cx, cy, glow, 0, 6.283); ctx.fill();
+          const l = glow * 0.9 * grow;
+          ctx.strokeStyle = `rgba(255,244,199,${0.55 * fade})`; ctx.lineWidth = 0.8;
+          ctx.beginPath(); ctx.moveTo(cx - l, cy); ctx.lineTo(cx + l, cy); ctx.moveTo(cx, cy - l); ctx.lineTo(cx, cy + l); ctx.stroke();
+        }
+      }
+      if (fx.flash) {
+        const p = (now - fx.flash.t0) / 1200;
+        if (p >= 1) fx.flash = null;
+        else {
+          const a = p < 0.1 ? (p / 0.1) * 0.5 : 0.5 * Math.pow(1 - (p - 0.1) / 0.9, 2);
+          const rr = Math.max(W, H) * 0.9;
+          const g = ctx.createRadialGradient(fx.flash.x, fx.flash.y, 0, fx.flash.x, fx.flash.y, rr);
+          g.addColorStop(0, `rgba(255,250,230,${a})`);
+          g.addColorStop(0.25, `rgba(255,244,199,${a * 0.45})`);
+          g.addColorStop(0.6, `rgba(168,156,255,${a * 0.2})`);
+          g.addColorStop(1, 'rgba(168,156,255,0)');
+          ctx.fillStyle = g; ctx.fillRect(0, 0, W, H);
+        }
+      }
+      if (fx.rays) {
+        const p = (now - fx.rays.t0) / 1800;
+        if (p >= 1) fx.rays = null;
+        else {
+          const e = 1 - Math.pow(1 - p, 3), n = 16, L = Math.max(W, H) * 0.7 * e;
+          for (let i = 0; i < n; i++) {
+            const ang = fx.rays.rot + (i / n) * 6.283 + p * 0.35;
+            const len = L * (i % 2 ? 0.6 : 1);
+            const ex = fx.rays.x + Math.cos(ang) * len, ey = fx.rays.y + Math.sin(ang) * len;
+            const g = ctx.createLinearGradient(fx.rays.x, fx.rays.y, ex, ey);
+            g.addColorStop(0, `rgba(255,244,199,${0.4 * (1 - p)})`);
+            g.addColorStop(1, 'rgba(255,244,199,0)');
+            ctx.strokeStyle = g; ctx.lineWidth = i % 2 ? 1 : 2;
+            ctx.beginPath(); ctx.moveTo(fx.rays.x, fx.rays.y); ctx.lineTo(ex, ey); ctx.stroke();
+          }
+        }
+      }
+      for (const k of ['ring', 'ring2']) {
+        const rg = fx[k]; if (!rg) continue;
+        const p = (now - rg.t0) / 1400;
+        if (p < 0) continue;
+        if (p >= 1) { fx[k] = null; continue; }
+        const e = 1 - Math.pow(1 - p, 3);
+        ctx.strokeStyle = `rgba(${k === 'ring' ? '255,244,199' : '168,156,255'},${0.6 * (1 - p)})`;
+        ctx.lineWidth = k === 'ring' ? 1.4 : 1;
+        ctx.beginPath(); ctx.arc(rg.x, rg.y, e * Math.min(W, H) * (k === 'ring' ? 0.5 : 0.38), 0, 6.283); ctx.stroke();
+      }
+      if (fx.burst.length) {
+        fx.burst = fx.burst.filter(b => b.life > 0 && b.y < H + 20);
+        for (const b of fx.burst) {
+          b.x += b.vx; b.y += b.vy; b.vx *= b.f; b.vy = b.vy * b.f + b.g; b.life -= b.decay;
+          const a = Math.max(0, b.life) ** 1.4 * (b.tw ? 0.6 + 0.4 * Math.sin(now * 0.012 + b.tw) : 1);
+          ctx.fillStyle = `rgba(${b.c},${a})`;
+          ctx.beginPath(); ctx.arc(b.x, b.y, b.r, 0, 6.283); ctx.fill();
+          if (b.star) {
+            const l = b.r * 4.5;
+            ctx.strokeStyle = `rgba(${b.c},${a * 0.8})`; ctx.lineWidth = 0.8;
+            ctx.beginPath(); ctx.moveTo(b.x - l, b.y); ctx.lineTo(b.x + l, b.y); ctx.moveTo(b.x, b.y - l); ctx.lineTo(b.x, b.y + l); ctx.stroke();
+          }
+        }
+      }
+      ctx.globalCompositeOperation = 'source-over';
+      if (tctx) {
+        tctx.clearRect(0, 0, W, H);
+        this.trail = this.trail.filter(p => now - p.t0 < p.life);
+        for (const p of this.trail) {
+          const q = (now - p.t0) / p.life, a = (1 - q) * (1 - q);
+          p.x += p.vx; p.y += p.vy; p.vy += 0.012; p.vx *= 0.98;
+          tctx.fillStyle = `rgba(${p.c},${a})`;
+          tctx.beginPath(); tctx.arc(p.x, p.y, p.r * (1 - q * 0.5), 0, 6.283); tctx.fill();
+          if (p.star) {
+            const l = p.r * 3.6 * (1 - q * 0.3);
+            tctx.strokeStyle = `rgba(${p.c},${a * 0.9})`; tctx.lineWidth = 0.8;
+            tctx.beginPath(); tctx.moveTo(p.x - l, p.y); tctx.lineTo(p.x + l, p.y); tctx.moveTo(p.x, p.y - l); tctx.lineTo(p.x, p.y + l); tctx.stroke();
+          }
+        }
+        const pt = this.ptr;
+        if (pt && pt.fine && now - pt.t < 1800) {
+          const fa = Math.max(0, 1 - Math.max(0, now - pt.t - 800) / 1000);
+          const g = tctx.createRadialGradient(pt.x, pt.y, 0, pt.x, pt.y, 24);
+          g.addColorStop(0, `rgba(255,236,180,${0.4 * fa})`); g.addColorStop(1, 'rgba(255,236,180,0)');
+          tctx.fillStyle = g; tctx.beginPath(); tctx.arc(pt.x, pt.y, 24, 0, 6.283); tctx.fill();
+        }
+        if (fx.plane) {
+          const p = (now - fx.plane.t0) / 7000;
+          if (p >= 1) fx.plane = null;
+          else {
+            const a = Math.sin(p * Math.PI), px = -30 + (W + 60) * p, py = H * 0.2 - Math.sin(p * Math.PI) * H * 0.08;
+            for (let j = 1; j < 14; j++) {
+              const pp = Math.max(0, p - j * 0.008), qx = -30 + (W + 60) * pp, qy = H * 0.2 - Math.sin(pp * Math.PI) * H * 0.08;
+              tctx.fillStyle = `rgba(255,244,199,${a * 0.5 * (1 - j / 14)})`;
+              tctx.beginPath(); tctx.arc(qx - 8, qy - 5, 1, 0, 6.283); tctx.fill();
+            }
+            tctx.font = '20px sans-serif'; tctx.fillStyle = `rgba(255,244,199,${a})`;
+            tctx.fillText('✈', px - 10, py);
+          }
+        }
+      }
+      this.raf = requestAnimationFrame(frame);
+    };
+    this.raf = requestAnimationFrame(frame);
+  }
+
+  burst(x, y, now, n = 80, small = false) {
+    const fx = this.fx, R = Math.random, W = this.W, H = this.H;
+    const cols = ['255,244,199', '168,156,255', '220,220,245', '255,184,209', '255,255,255'];
+    const count = small ? n : 190;
+    for (let i = 0; i < count; i++) {
+      const a = R() * 6.283, sp = small ? 0.4 + R() * 2.2 : 1 + Math.pow(R(), 0.7) * 7.5;
+      fx.burst.push({ x, y, vx: Math.cos(a) * sp, vy: Math.sin(a) * sp, r: 0.6 + R() * 1.8, life: 1,
+        decay: small ? 0.008 + R() * 0.01 : 0.004 + R() * 0.008, c: cols[i % 5], f: 0.962, g: small ? -0.004 : 0.01,
+        star: R() < 0.22, tw: R() * 6 });
+    }
+    if (small) { fx.target = 1.7; return; }
+    fx.ring = { x, y, t0: now }; fx.ring2 = { x, y, t0: now + 200 };
+    fx.flash = { x, y, t0: now }; fx.rays = { x, y, t0: now, rot: R() * 6.283 };
+    fx.target = 2;
+    this.T(450, () => {
+      for (let i = 0; i < 90; i++) {
+        this.fx.burst.push({ x: R() * W, y: -10 - R() * H * 0.5, vx: (R() - 0.5) * 0.3, vy: 0.5 + R() * 1.1, r: 0.5 + R() * 1.4,
+          life: 1, decay: 0.003 + R() * 0.003, c: cols[i % 5], f: 1, g: 0, star: R() < 0.4, tw: R() * 6 });
+      }
+    });
+    this.T(1100, () => { this.fx.target = 1.3; });
+  }
+
+  onPMove = (e) => {
+    const now = performance.now(), x = e.clientX, y = e.clientY;
+    const last = this.ptr;
+    this.ptr = { x, y, t: now, fine: e.pointerType === 'mouse' };
+    if (!last || this.reduced) return;
+    const dist = Math.hypot(x - last.x, y - last.y);
+    const n = Math.min(3, Math.floor(dist / 7));
+    const cols = ['255,214,130', '168,156,255', '255,244,199'];
+    for (let i = 0; i < n; i++) {
+      const f = (i + 1) / n;
+      this.trail.push({ x: last.x + (x - last.x) * f + (Math.random() - 0.5) * 4, y: last.y + (y - last.y) * f + (Math.random() - 0.5) * 4,
+        vx: (Math.random() - 0.5) * 0.5, vy: (Math.random() - 0.3) * 0.4, r: 0.8 + Math.random() * 1.4, t0: now, life: 600 + Math.random() * 500,
+        c: cols[Math.floor(Math.random() * 3)], star: Math.random() < 0.3 });
+    }
+    if (this.trail.length > 220) this.trail.splice(0, this.trail.length - 220);
+  };
+
+  onPDown = (e) => {
+    const now = performance.now(), x = e.clientX, y = e.clientY;
+    const cols = ['255,214,130', '168,156,255', '255,244,199'];
+    if (!this.reduced) for (let i = 0; i < 10; i++) {
+      const a = Math.random() * 6.283, sp = 0.8 + Math.random() * 1.8;
+      this.trail.push({ x, y, vx: Math.cos(a) * sp, vy: Math.sin(a) * sp, r: 0.9 + Math.random() * 1.2, t0: now, life: 700 + Math.random() * 400, c: cols[i % 3], star: i % 3 === 0 });
+    }
+    const onCard = e.target && e.target.closest && e.target.closest('[data-card], button');
+    if (onCard) return;
+    for (const sh of this.shoots || []) {
+      const el = (now - sh.t0) / 1000, hx = sh.x + sh.vx * el, hy = sh.y + sh.vy * el;
+      if (Math.hypot(hx - x, hy - y) < 55) {
+        sh.t0 = -1e9;
+        this.burst(hx, hy, now, 30, true);
+        this.toast('HEADSHOT ✦ aim thật dính');
+        return;
+      }
+    }
+    const m = this.moonPos;
+    if (m && Math.hypot(x - m.x, y - m.y) < m.r * 1.5) {
+      this.fx.moonPulse = now;
+      const msgs = ['Tên em nghĩa là mặt trăng đó ✦', 'Trăng tối nay sáng hơn một chút, vì hôm nay là 24.09', 'Chạm nữa là trăng ngại đó', 'Được rồi, trăng tặng em thêm một cơn mưa sao ✦'];
+      const i = this.moonTaps++ % msgs.length;
+      this.toast(msgs[i]);
+      if (i === 3 && !this.reduced) this.fx.shower = { until: now + 3500, next: 0 };
+    }
+  };
+
+  onKey = (e) => {
+    if (!e.key || e.key.length !== 1) return;
+    this.keybuf = (this.keybuf + e.key.toLowerCase()).slice(-12);
+    if (this.keybuf.endsWith('nguyet') || this.keybuf.endsWith('2409')) {
+      this.keybuf = '';
+      if (!this.reduced) this.fx.shower = { until: performance.now() + 4500, next: 0 };
+      this.fx.moonPulse = performance.now();
+      this.toast('Bí mật đã mở khoá: LEVEL 22+ ✦');
+    }
+  };
+
+  stampTap = () => {
+    const n = (this.state.stampN || 0) + 1;
+    this.setState({ stampN: n });
+    if (n % 3 === 0) { this.fx.plane = { t0: performance.now() }; this.toast('✈ NEXT DESTINATION: nơi nào em muốn'); }
+  };
+
+  toast(text) {
+    clearTimeout(this.toastT);
+    this.setState({ toast: text, toastOn: true });
+    this.toastT = setTimeout(() => this.setState({ toastOn: false }), 2800);
+  }
+
+  open = () => {
+    if (this.state.phase !== 'intro') return;
+    const speed = this.props.revealSpeed ?? 1;
+    if (this.reduced) {
+      this.setState({ phase: 'card', stage: 6 });
+      this.T(700, () => this.revealChunk(0, speed));
+      return;
+    }
+    this.setState(s => ({ phase: 'press', pressed: true, pressN: s.pressN + 1 }));
+    this.T(170, () => this.setState({ pressed: false }));
+    this.T(250, () => { this.setState({ phase: 'gather' }); this.gather(); });
+    this.T(950, () => { this.fx.light = { t0: performance.now() }; this.fx.target = 1.3; });
+    this.T(1100, () => this.setState({ stage: 3 }));
+    this.T(1600, () => { this.setState({ stage: 4 }); this.fx.target = 1.45; });
+    this.T(2000, () => { this.setState({ stage: 5 }); this.drawSigil(); });
+    this.T(2600, () => {
+      if (this.layerRef.current) this.layerRef.current.scrollTop = 0;
+      this.setState({ phase: 'card', stage: 6 }); this.fx.target = 1.3;
+    });
+    this.T(3000, () => this.revealChunk(0, speed));
+  };
+
+  gather() {
+    const W = this.W, H = this.H, cx = W / 2, cy = H / 2, now = performance.now();
+    const rad = Math.min(W, H) * 0.5;
+    const pool = this.stars.filter(s => { const d = Math.hypot(s.x - cx, s.y - cy); return d > 50 && d < rad && s.r > 0.45; })
+      .sort((a, b) => Math.hypot(a.x - cx, a.y - cy) - Math.hypot(b.x - cx, b.y - cy)).slice(0, 18);
+    pool.forEach((s, i) => { s.g = { t0: now + i * 12, dur: 620 + Math.random() * 160 }; });
+  }
+
+  drawSigil() {
+    const W = this.W, H = this.H, land = W > H;
+    const x = land ? W * 0.14 : W * 0.2, y = land ? H * 0.32 : H * 0.07, sz = Math.min(W, H) * (land ? 0.06 : 0.05);
+    const top = { x, y: y - sz * 1.3 };
+    this.cons = { pts: [top, { x: x + sz, y }, { x, y: y + sz * 1.3 }, { x: x - sz, y }, top], t0: performance.now(), hold: 9 };
+  }
+
+  revealChunk(k, speed) {
+    const p = this.chunkPara[k];
+    const newPara = k === 0 || this.chunkPara[k - 1] !== p;
+    this.setState(s => ({ chunks: k + 1, revealed: Math.max(s.revealed, p + 1) }), () => this.follow(p));
+    if (k === this.chunkLens.length - 1) {
+      this.T(700, () => { this.setState({ finStar: true }); if (!this.reduced) this.fx.bigShoot = true; });
+      this.T(2200 / speed, () => { this.setState({ cake: true }); this.followEl('[data-p="cake"]'); this.T(1000, () => this.setState({ cakeFull: true })); this.T(1500, () => this.setState({ lit: true })); });
+      return;
+    }
+    const nextNewPara = this.chunkPara[k + 1] !== p;
+    const d = (160 + this.chunkLens[k] * 13 + (nextNewPara ? 380 : 0)) / speed;
+    this.T(newPara && k > 0 ? d + 120 : d, () => this.revealChunk(k + 1, speed));
+  }
+
+  revealNext(i, speed) {
+    this.setState({ revealed: i + 1 }, () => this.follow(i));
+    let delay;
+    if (i < 5) delay = (220 + this.lens[i] * 4) / speed;
+    else if (i === 5) { this.T(700, () => { this.setState({ finStar: true }); if (!this.reduced) this.fx.bigShoot = true; }); this.T(2600 / speed, () => { this.setState({ cake: true }); this.followEl('[data-p="cake"]'); this.T(1000, () => this.setState({ cakeFull: true })); this.T(1500, () => this.setState({ lit: true })); }); return; }
+    else if (i === 8) delay = 1000 / speed;
+    else { this.setState({ phase: 'done' }); this.T(400, () => this.setState({ planeGo: true })); return; }
+    this.T(delay, () => this.revealNext(i + 1, speed));
+  }
+
+  followEl(sel) {
+    const L = this.layerRef.current;
+    if (!L) return;
+    setTimeout(() => {
+      const el = L.querySelector(sel);
+      if (!el) return;
+      const delta = el.getBoundingClientRect().bottom - (L.getBoundingClientRect().bottom - 56);
+      if (delta > 0) L.scrollBy({ top: delta, behavior: 'smooth' });
+    }, 950);
+  }
+
+  holdStart = (e) => {
+    if (!this.state.lit || this.state.blown) return;
+    if (e && e.preventDefault) e.preventDefault();
+    clearTimeout(this.holdT);
+    this.setState({ holding: true, holdFail: false });
+    this.holdT = setTimeout(() => this.blow(), 950);
+  };
+  holdEnd = () => {
+    if (!this.state.holding || this.state.blown) return;
+    clearTimeout(this.holdT);
+    this.setState({ holding: false, holdFail: true });
+  };
+  blowKey = (e) => { if (e && e.detail === 0) this.blow(); };
+  noMenu = (e) => { if (e && e.preventDefault) e.preventDefault(); };
+
+  blow = () => {
+    if (!this.state.cake || this.state.blown) return;
+    clearTimeout(this.holdT);
+    this.setState({ blown: true, holding: false });
+    this.T(900, () => this.setState({ spark: true }));
+    this.T(1300, () => {
+      this.setState({ dark: true });
+      const c = this.cakeRef.current;
+      if (c) { const r = c.getBoundingClientRect(); this.burst(r.left + r.width / 2, r.top + 20, performance.now(), 36, true); }
+    });
+    this.T(2000, () => {
+      if (!this.reduced) this.fx.shower = { until: performance.now() + 6000, next: 0 };
+      this.fx.target = 1.8;
+    });
+    this.T(7000, () => { this.fx.target = 1.3; });
+    this.T(3200, () => this.revealNext(8, this.props.revealSpeed ?? 1));
+  };
+
+  follow(i) {
+    const L = this.layerRef.current;
+    if (!L) return;
+    setTimeout(() => {
+      const el = i === 9 ? L.lastElementChild : L.querySelector(`[data-p="${i}"]`);
+      if (!el) return;
+      const lr = L.getBoundingClientRect(), er = el.getBoundingClientRect();
+      const delta = er.bottom - (lr.bottom - 56);
+      if (delta > 0) L.scrollBy({ top: delta, behavior: 'smooth' });
+    }, i === 9 ? 100 : 450);
+  }
+
+  replay = () => {
+    this.clearTimers();
+    Object.assign(this.fx, { target: 1, burst: [], orb: null, ring: null, ring2: null, flash: null, rays: null, shower: null });
+    this.cons = null; this.fx.light = null;
+    (this.stars || []).forEach(st => { st.g = null; st.back = null; });
+    clearTimeout(this.holdT);
+    this.setState({ phase: 'intro', stage: 0, revealed: 0, chunks: 0, cake: false, blown: false, pressed: false, finStar: false, planeGo: false, chunks: 0, lit: false, holding: false, holdFail: false, cakeFull: false, spark: false, dark: false });
+    const L = this.layerRef.current;
+    if (L) this.T(700, () => { L.scrollTop = 0; });
+  };
+
+  flame(k) {
+    const { blown, lit, holding } = this.state;
+    const on = lit && !blown;
+    const el = React.createElement;
+    const puffs = blown ? [0, 1, 2].map(j => el('span', { key: 's' + k + j, style: { position: 'absolute', left: 0, bottom: 2, width: 9, height: 9, borderRadius: '50%', background: 'rgba(150,140,170,0.45)', filter: 'blur(3px)', '--sx': ((j - 1) * 6 + (k === 1 ? -3 : 3)) + 'px', animation: `nnSmoke 2.2s ease-out ${0.1 + j * 0.28 + k * 0.08}s forwards`, opacity: 0 } })) : null;
+    return el(React.Fragment, null,
+      el('span', { key: 'w', style: { position: 'absolute', left: 0, bottom: 0, width: 0, height: 0, transformOrigin: '0 100%', transform: on ? 'scale(1)' : 'scale(0)', opacity: on ? 1 : 0, transition: `transform 600ms cubic-bezier(.34,1.3,.5,1) ${on && k === 2 ? 280 : 0}ms, opacity 300ms ease ${on && k === 2 ? 280 : 0}ms` } },
+        el('span', { style: { position: 'absolute', left: 0, bottom: 0, width: 9, height: 16, borderRadius: '50% 50% 50% 50% / 62% 62% 38% 38%', background: 'radial-gradient(circle at 50% 70%, #FFFFFF 0%, #FFF4C7 35%, #FFB84D 75%, rgba(255,140,60,0) 100%)', boxShadow: '0 0 14px 4px rgba(255,220,140,0.55), 0 0 36px 8px rgba(255,184,209,0.25)', transformOrigin: '50% 100%', animation: holding ? `nnLean ${k === 1 ? 0.35 : 0.42}s ease-in-out infinite` : `nnFlicker ${k === 1 ? 1.1 : 1.35}s ease-in-out infinite` } })),
+      puffs
+    );
+  }
+
+  cakeFx() {
+    const { blown, lit, spark } = this.state, el = React.createElement;
+    const glow = el('span', { style: { position: 'absolute', left: 90, bottom: 96, width: 110, height: 110, marginLeft: -55, borderRadius: '50%', background: 'radial-gradient(closest-side, rgba(255,214,130,0.5), rgba(255,214,130,0))', opacity: lit && !blown ? 1 : 0, transition: 'opacity 700ms ease', pointerEvents: 'none' } },
+      el('span', { style: { position: 'absolute', inset: 0, borderRadius: '50%', background: 'radial-gradient(closest-side, rgba(255,236,180,0.5), rgba(255,236,180,0))', animation: 'nnPulse 2.4s ease-in-out infinite' } }));
+    const glyphs = [['✦', 66, -26, 15, '#C9A24E', 0], ['✧', 82, 8, 13, '#8B7CFF', 0.15], ['·', 92, -6, 22, '#C9A24E', 0.3], ['✦', 104, 24, 12, '#C9A24E', 0.1], ['✧', 118, 34, 11, '#8B7CFF', 0.4], ['✦', 88, -40, 9, '#8B7CFF', 0.5]];
+    const sparks = spark ? glyphs.map(([g, x, dx, fs, c, d], i) => el('span', { key: 'k' + i, style: { position: 'absolute', left: x, bottom: 118, fontSize: fs, lineHeight: 1, color: c, textShadow: '0 0 10px rgba(255,226,160,0.8)', '--dx': dx + 'px', opacity: 0, animation: `nnSpark 2.6s cubic-bezier(.22,.61,.36,1) ${d}s forwards`, pointerEvents: 'none' } }, g)) : null;
+    return { glow, sparks };
+  }
+
+  renderVals() {
+    const { loaded, phase, revealed } = this.state;
+    const st = this.state.stage;
+    const cfx = this.cakeFx();
+    const intro = loaded && (phase === 'intro' || phase === 'press');
+    const card = phase === 'card' || phase === 'done';
+    const o = {}, y = {}, b = {}, r = {}, m = {}, co = {}, cb = {};
+    for (let j = 0; j < this.chunkLens.length; j++) { const on = card && this.state.chunks > j; co['k' + j] = on ? 1 : 0; cb['k' + j] = on ? '0px' : '5px'; }
+    for (let i = 0; i < 10; i++) {
+      const on = card && revealed > i;
+      o['p' + i] = on ? 1 : 0;
+      r['p' + i] = on ? '1fr' : '0fr';
+      m['p' + i] = on ? '0%' : '100%';
+      y['p' + i] = on ? '0px' : '6px';
+      b['p' + i] = on ? '0px' : '6px';
+    }
+    return {
+      canvasRef: this.canvasRef, layerRef: this.layerRef, btnRef: this.btnRef,
+      open: this.open, replay: this.replay,
+      introO: intro ? 1 : 0,
+      introY: intro ? '0px' : (loaded ? '-8px' : '14px'),
+      introPE: phase === 'intro' ? 'auto' : 'none',
+      btnO: intro || phase === 'press' ? (loaded ? 1 : 0) : 0,
+      btnScale: this.state.pressed ? 0.96 : 1,
+      hovOn: () => this.setState({ hov: true }), hovOff: () => this.setState({ hov: false }),
+      arrowY: this.state.hov || phase === 'press' ? '4px' : '0px',
+      ctaColor: phase === 'press' ? '#FFF4C7' : this.state.hov ? '#FFFFFF' : '#DCDCF5',
+      ctaShadow: this.state.hov || phase === 'press' ? '0 0 14px rgba(255,244,199,0.8)' : '0 0 0 rgba(0,0,0,0)',
+      lineW: phase === 'press' ? '200px' : this.state.hov ? '190px' : '120px',
+      lineGlow: this.state.hov || phase === 'press' ? '0 0 12px rgba(255,244,199,0.9)' : '0 0 0 rgba(0,0,0,0)',
+      halo: React.createElement('span', { style: { display: 'inline-block', fontSize: 12, lineHeight: 1, color: '#FFF4C7', animation: 'nnPulse 2.8s ease-in-out infinite' } }, '✦'),
+      cardO: card ? 1 : 0,
+      cardT: card ? 'translateY(0px) scale(1)' : 'translateY(44px) scale(0.92)',
+      cardClip: card ? 'inset(0% 0% 0% 0% round 22px)' : 'inset(49.5% 0% 49.5% 0% round 22px)',
+      cardPE: card ? 'auto' : 'none',
+      ripple: this.state.pressN && (phase === 'press' || phase === 'gather') ? React.createElement('span', { key: this.state.pressN, style: { position: 'absolute', left: '50%', top: '50%', width: 140, height: 140, marginLeft: -70, marginTop: -70, borderRadius: '50%', border: '1px solid rgba(255,244,199,0.5)', animation: 'nnRipple 800ms cubic-bezier(.22,.61,.36,1) forwards', pointerEvents: 'none' } }) : null,
+      envO: st >= 3 && st <= 5 ? 1 : 0,
+      envT: st < 3 ? 'translateY(10px) scale(0.85)' : st <= 5 ? 'translateY(0px) scale(1)' : 'translateY(40px) scale(0.94)',
+      envGlowO: st === 3 ? 0.4 : st === 4 || st === 5 ? 1 : 0,
+      innerO: st >= 4 ? 1 : 0,
+      flapR: st >= 4 ? '180deg' : '0deg',
+      flapZ: st >= 5 ? -1 : 1,
+      sealO: st >= 4 ? 0 : 1,
+      sheetY: st >= 5 ? '-58%' : '0%',
+      warmO: st >= 4 ? 1 : 0,
+      finO: this.state.finStar ? 1 : 0, finS: this.state.finStar ? 1 : 0.3,
+      planeO: phase === 'done' ? 1 : 0, planeL: this.state.planeGo ? 'calc(100% - 22px)' : '0px',
+      rOn: () => this.setState({ rhov: true }), rOff: () => this.setState({ rhov: false }),
+      rColor: this.state.rhov ? '#FFFFFF' : '#DCDCF5',
+      rLineW: this.state.rhov ? '90px' : '40px',
+      rStarO: this.state.rhov ? 1 : 0, rStarS: this.state.rhov ? 1 : 0.4,
+      layerOY: card ? 'auto' : 'hidden',
+      replayPE: revealed >= 10 ? 'auto' : 'none',
+      mission: this.state.blown ? 'COMPLETE ✓' : 'LOADING…',
+      cakeRef: this.cakeRef, blow: this.blow,
+      blown: this.state.blown, notBlown: !this.state.blown,
+      cakeO: card && this.state.cake ? 1 : 0,
+      cakeY: card && this.state.cake ? '0px' : '28px',
+      cakeB: card && this.state.cake ? '0px' : '6px',
+      flame1: this.flame(1), flame2: this.flame(2),
+      cakeGlow: cfx.glow, sparks: cfx.sparks,
+      trailRef: this.trailRef, stampTap: this.stampTap,
+      stampR: ((this.state.stampN || 0) % 2 ? -8 : 0) + 'deg',
+      toastText: this.state.toast || '', toastO: this.state.toastOn ? 1 : 0, toastY: this.state.toastOn ? '0px' : '-10px',
+      cakeRows: card && this.state.cake ? '1fr' : '0fr',
+      cakeOv: this.state.cakeFull ? 'visible' : 'hidden',
+      cakeS: card && this.state.cake ? 1 : 0.9,
+      creamO: card && this.state.cake && !this.state.dark ? 1 : 0,
+      creamDur: this.state.dark ? '2400ms' : '1600ms',
+      holdStart: this.holdStart, holdEnd: this.holdEnd, blowKey: this.blowKey, noMenu: this.noMenu,
+      holdW: this.state.holding ? '100%' : '0%',
+      holdDur: this.state.holding ? '950ms' : '250ms',
+      holdHint: !this.state.lit ? 'ĐANG THẮP NẾN…' : this.state.holding ? 'PHÙ…' : this.state.holdFail ? 'GIỮ LÂU HƠN CHÚT NỮA NHÉ' : 'NHẤN GIỮ ĐỂ THỔI NẾN',
+      planeRows: phase === 'done' ? '1fr' : '0fr',
+      o, y, b, r, m, co, cb
+    };
+  }
+}
+</script>
+</body>
+</html>
